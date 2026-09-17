@@ -14,30 +14,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initPreloader();
     initCountdown();
-    initAudioSynth();
+    initBgMusic();
     initLightboxModal();
     initCalendarEvent();
 });
 
 /* ==========================================================================
-   1. PRELOADER & CONFETTI INTRO
+   1. PRELOADER, OPEN INVITATION BUTTON & CONFETTI INTRO
    ========================================================================== */
 function initPreloader() {
     const loader = document.getElementById('modern-loader');
-    setTimeout(() => {
-        if (loader) {
-            loader.classList.add('loader-done');
-            document.body.classList.remove('loading-active');
-            
-            if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 80,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-            }
+    const enterBtn = document.getElementById('loader-enter-btn');
+
+    function openInvitation() {
+        if (!loader || loader.classList.contains('loader-done')) return;
+        
+        // Hide preloader overlay
+        loader.classList.add('loader-done');
+        document.body.classList.remove('loading-active');
+
+        // Play music with full sound using explicit user gesture
+        playBgMusicUnmuted();
+
+        // Launch celebratory confetti
+        if (typeof confetti === 'function') {
+            confetti({
+                particleCount: 85,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
         }
-    }, 1200);
+    }
+
+    if (enterBtn) {
+        enterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openInvitation();
+        });
+    }
+
+    if (loader) {
+        loader.addEventListener('click', openInvitation);
+    }
 }
 
 /* ==========================================================================
@@ -81,79 +99,73 @@ function initCountdown() {
 }
 
 /* ==========================================================================
-   3. AUDIO SYNTH AMBIENT MELODY
+   3. BACKGROUND MUSIC (music.mpeg) PLAYBACK CONTROLLER
    ========================================================================== */
-let audioCtx = null;
-let isAudioPlaying = false;
-let synthTimer = null;
+function playBgMusicUnmuted() {
+    const bgMusic = document.getElementById('bg-music');
+    const wrapper = document.querySelector('.audio-control-wrapper');
+    if (!bgMusic) return;
 
-function initAudioSynth() {
-    const audioBtn = document.getElementById('audio-toggle-btn');
-    if (!audioBtn) return;
-
-    audioBtn.addEventListener('click', () => {
-        if (isAudioPlaying) {
-            stopAudioSynth();
-        } else {
-            startAudioSynth();
-        }
-    });
-
-    document.addEventListener('touchstart', () => {
-        if (!isAudioPlaying) startAudioSynth();
-    }, { once: true });
-}
-
-function startAudioSynth() {
-    try {
-        if (!audioCtx) {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            audioCtx = new AudioContext();
-        }
-
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        isAudioPlaying = true;
-        document.querySelector('.audio-control-wrapper')?.classList.add('audio-playing');
-
-        const notes = [440, 554.37, 659.25, 830.61, 880, 1108.73];
-        let index = 0;
-
-        synthTimer = setInterval(() => {
-            if (!isAudioPlaying || !audioCtx) return;
-            playChimeNote(notes[index % notes.length], 1.2);
-            index++;
-        }, 900);
-
-    } catch (e) {
-        console.log("Audio error:", e);
+    bgMusic.muted = false;
+    const promise = bgMusic.play();
+    if (promise !== undefined) {
+        promise.then(() => {
+            if (wrapper) wrapper.classList.add('audio-playing');
+        }).catch((err) => {
+            console.log("Audio play error:", err);
+            // Muted fallback if browser still blocks
+            bgMusic.muted = true;
+            bgMusic.play().then(() => {
+                if (wrapper) wrapper.classList.add('audio-playing');
+            }).catch(() => {});
+        });
     }
 }
 
-function stopAudioSynth() {
-    isAudioPlaying = false;
-    if (synthTimer) clearInterval(synthTimer);
-    document.querySelector('.audio-control-wrapper')?.classList.remove('audio-playing');
-}
+function initBgMusic() {
+    const bgMusic = document.getElementById('bg-music');
+    const audioBtn = document.getElementById('audio-toggle-btn');
+    const wrapper = document.querySelector('.audio-control-wrapper');
 
-function playChimeNote(freq, duration) {
-    if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+    if (!bgMusic) return;
 
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    // Attempt playback on page load
+    playBgMusicUnmuted();
 
-    gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    // Universal gesture unlock for unmuting sound on any touch/click/scroll
+    const unlockAudioOnGesture = () => {
+        playBgMusicUnmuted();
+        ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'keydown'].forEach((evt) => {
+            window.removeEventListener(evt, unlockAudioOnGesture);
+            document.removeEventListener(evt, unlockAudioOnGesture);
+        });
+    };
 
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'keydown'].forEach((evt) => {
+        window.addEventListener(evt, unlockAudioOnGesture, { passive: true, once: true });
+        document.addEventListener(evt, unlockAudioOnGesture, { passive: true, once: true });
+    });
 
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
+    // Equalizer floating button toggle
+    if (audioBtn) {
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgMusic.paused || bgMusic.muted) {
+                playBgMusicUnmuted();
+            } else {
+                bgMusic.pause();
+            }
+        });
+    }
+
+    // Keep UI equalizer animation state in sync with audio element state
+    bgMusic.addEventListener('play', () => {
+        if (wrapper && !bgMusic.muted) wrapper.classList.add('audio-playing');
+    });
+
+    bgMusic.addEventListener('pause', () => {
+        if (wrapper) wrapper.classList.remove('audio-playing');
+    });
 }
 
 /* ==========================================================================

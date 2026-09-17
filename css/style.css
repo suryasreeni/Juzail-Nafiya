@@ -155,7 +155,7 @@ body.loading-active {
 .loader-arabic {
     font-family: var(--font-arabic);
     color: #E0C37A;
-    font-size: 30px;
+    font-size: clamp(20px, 6vw, 30px);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -167,27 +167,25 @@ body.loading-active {
 
 .loader-names {
     font-family: var(--font-serif);
-    font-size: 3.2rem;
+    font-size: clamp(1.8rem, 7vw, 3.2rem);
     color: #FFFFFF;
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
     margin-bottom: 4px;
+    word-break: break-word;
 }
 
 .loader-names .ampersand {
     font-family: var(--font-script);
     color: #E0C37A;
-    font-size: 3.6rem;
+    font-size: clamp(2.2rem, 8vw, 3.6rem);
 }
 
 .loader-date {
-    font-size: 0.9rem;
-    letter-spacing: 4px;
+    font-size: clamp(0.75rem, 3.2vw, 0.9rem);
+    letter-spacing: clamp(2px, 1vw, 4px);
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.9);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-    text-transform: uppercase;
-    color: var(--text-muted);
 }
 
 .loader-progress-track {
@@ -210,6 +208,27 @@ body.loading-active {
     100% { transform: translateX(0%); }
 }
 
+.loader-enter-btn {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    letter-spacing: 1px;
+    padding: 13px 32px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    animation: loaderBtnPulse 2s infinite ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loader-enter-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 14px 35px rgba(224, 195, 122, 0.5);
+}
+
+@keyframes loaderBtnPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
 .modern-loader.loader-done {
     opacity: 0;
     visibility: hidden;
@@ -224,24 +243,27 @@ body.loading-active {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(197, 160, 89, 0.15);
-    padding: 14px 10px;
+    padding: 12px 10px;
 }
 
 .nav-container {
     display: flex;
-    gap: 26px;
+    gap: clamp(10px, 3vw, 26px);
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 2px 0;
 }
 
 .nav-container a {
     color: var(--text-main);
     text-decoration: none;
-    font-size: 13px;
+    font-size: clamp(11px, 2.8vw, 13px);
     letter-spacing: 1px;
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
-    padding: 4px 0;
+    padding: 4px 2px;
+    white-space: nowrap;
 }
 
 .nav-container a::after {
@@ -344,12 +366,12 @@ body.loading-active {
 }
 
 .hero-photo-arch-wrapper {
-    max-width: 320px;
+    max-width: clamp(230px, 75vw, 320px);
     width: 100%;
 }
 
 .hero-photo-arch {
-    height: 380px;
+    height: clamp(280px, 60vw, 380px);
     border-radius: 190px 190px 28px 28px;
     border: 5px solid #FFFFFF;
     box-shadow: 0 15px 35px rgba(27, 42, 61, 0.12);
@@ -379,13 +401,13 @@ body.loading-active {
 
 .bismillah-arabic {
     font-family: var(--font-arabic);
-    font-size: 26px;
+    font-size: clamp(18px, 5vw, 26px);
     color: var(--color-gold);
 }
 
 .bismillah-subtext {
     font-family: var(--font-serif);
-    font-size: 15px;
+    font-size: clamp(13px, 3.5vw, 15px);
     font-style: italic;
     color: var(--text-muted);
 }
@@ -404,9 +426,10 @@ body.loading-active {
 
 .hero-couple-names {
     font-family: var(--font-serif);
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 7vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
+    word-break: break-word;
 }
 
 .groom-name { color: var(--color-mauve); }
@@ -415,12 +438,12 @@ body.loading-active {
 .hero-ampersand {
     font-family: var(--font-script);
     color: var(--color-gold);
-    font-size: 3.8rem;
-    margin: 0 8px;
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    margin: 0 6px;
 }
 
 .hero-date-str {
-    font-size: 1.15rem;
+    font-size: clamp(0.95rem, 4vw, 1.15rem);
     color: var(--text-main);
     font-weight: 600;
 }
@@ -429,29 +452,31 @@ body.loading-active {
 .countdown-wrapper {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: clamp(6px, 2vw, 12px);
+    flex-wrap: nowrap;
 }
 
 .countdown-box {
     background: #FFFFFF;
     border: 1px solid rgba(197, 160, 89, 0.25);
     border-radius: 16px;
-    padding: 10px 14px;
-    min-width: 65px;
+    padding: clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 14px);
+    min-width: clamp(54px, 15vw, 65px);
+    text-align: center;
     box-shadow: 0 8px 20px rgba(10, 25, 47, 0.04);
 }
 
 .cd-num {
     display: block;
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 4.5vw, 1.8rem);
     font-weight: 700;
     color: var(--color-gold);
     line-height: 1;
 }
 
 .cd-lbl {
-    font-size: 0.65rem;
+    font-size: clamp(0.55rem, 1.8vw, 0.65rem);
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-muted);
@@ -715,15 +740,90 @@ body.loading-active {
     color: var(--color-gold-dark);
 }
 
-/* Responsive */
+/* Lightbox Modal Image Constraint */
+#lightbox-modal-img {
+    max-height: 80vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Comprehensive Multi-Device Responsive Breakpoints */
+@media (max-width: 991px) {
+    .section-padding {
+        padding: 70px 15px;
+    }
+    .hero-main-card {
+        padding: 32px 24px !important;
+    }
+    .event-banner-img {
+        height: 240px;
+    }
+    .featured-full-card img {
+        height: 380px;
+    }
+}
+
 @media (max-width: 768px) {
-    .hero-couple-names { font-size: 2.5rem; }
-    .hero-ampersand { font-size: 3rem; }
-    .section-heading { font-size: 2.2rem; }
-    .hero-main-card { padding: 25px 18px !important; }
-    .hero-photo-arch-wrapper { max-width: 260px; }
-    .hero-photo-arch { height: 310px; }
-    .event-banner-img { height: 220px; }
-    .featured-full-card img { height: 350px; }
+    .section-padding {
+        padding: 50px 15px;
+    }
+    .hero-main-card {
+        padding: 24px 16px !important;
+        border-radius: 24px;
+    }
+    .event-banner-img {
+        height: 200px;
+    }
+    .featured-full-card img {
+        height: 320px;
+    }
+    .invite-specs {
+        justify-content: space-around;
+        gap: 16px !important;
+    }
+    .floating-photo-badge {
+        right: 10px;
+        bottom: -12px;
+        padding: 6px 14px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-padding {
+        padding: 40px 12px;
+    }
+    .hero-action-buttons {
+        width: 100%;
+    }
+    .hero-action-buttons .btn {
+        width: 100%;
+        text-align: center;
+        padding: 11px 20px;
+        font-size: 0.88rem;
+    }
+    .event-banner-img {
+        height: 170px;
+    }
+    .event-banner-overlay {
+        padding: 14px !important;
+    }
+    .featured-full-card img {
+        height: 250px;
+    }
+    .audio-control-wrapper {
+        bottom: 16px;
+        right: 16px;
+    }
+    .audio-btn {
+        width: 44px;
+        height: 44px;
+    }
+    .footer-names {
+        font-size: 1.8rem;
+    }
 }
 

@@ -30,6 +30,9 @@
 </head>
 <body class="loading-active">
 
+    <!-- AUDIO ELEMENT FOR BACKGROUND MUSIC -->
+    <audio id="bg-music" src="music.mpeg" loop autoplay preload="auto"></audio>
+
     <!-- 1. FULL-WIDTH IMAGE PRELOADER -->
     <div id="modern-loader" class="modern-loader">
         <div class="loader-bg-image" style="background-image: url('images/image1.jpg');"></div>
@@ -39,9 +42,12 @@
             <div class="loader-line-shimmer mx-auto mb-3"></div>
             <h2 class="loader-names">Juzail <span class="ampersand">&amp;</span> Nafiya</h2>
             <p class="loader-date mb-3">Sunday, 15 November 2026</p>
-            <div class="loader-progress-track mx-auto">
+            <div class="loader-progress-track mx-auto mb-4">
                 <div class="loader-progress-bar"></div>
             </div>
+            <button id="loader-enter-btn" class="btn btn-gold-solid loader-enter-btn">
+                <i class="fa-solid fa-envelope-open-text me-2"></i>Open Invitation 💍
+            </button>
         </div>
     </div>
 
@@ -84,7 +90,7 @@
                         <div class="col-lg-5 text-center">
                             <div class="hero-photo-arch-wrapper position-relative mx-auto">
                                 <div class="hero-photo-arch shadow-lg overflow-hidden">
-                                    <img src="images/4.jpeg" alt="Juzail & Nafiya" class="img-fluid w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop';">
+                                    <img src="images/4_car.png" alt="Juzail & Nafiya" class="img-fluid w-100 h-100 object-fit-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop';">
                                 </div>
                                 <div class="hero-photo-badge">
                                     <i class="fa-solid fa-heart text-gold me-1"></i> Juzail &amp; Nafiya
@@ -152,7 +158,7 @@
                     <div class="col-lg-5" data-aos="fade-right">
                         <div class="photo-frame-card position-relative">
                             <div class="photo-box">
-                                <img id="pos-image-2" src="images/1.jpeg" class="img-fluid rounded-4 shadow-sm" alt="Hands with Rose Bouquet" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop';">
+                                <img id="pos-image-2" src="images/1_car.png" class="img-fluid rounded-4 shadow-sm" alt="Hands with Rose Bouquet" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop';">
                             </div>
                             <div class="floating-photo-badge">
                                 <i class="fa-solid fa-heart text-gold me-2"></i>A Sacred Union
@@ -208,7 +214,7 @@
 
                 <div class="row align-items-center g-4">
                     <!-- Groom Box -->
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-12" data-aos="fade-up" data-aos-delay="100">
                         <div class="person-white-card text-center p-4">
                             <div class="person-tag tag-mauve mb-3">GROOM</div>
                             <h3 class="person-name">Juzail</h3>
@@ -219,9 +225,9 @@
                     </div>
 
                     <!-- Center Positioned Image 3 -->
-                    <div class="col-md-12 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="col-lg-4 col-12" data-aos="zoom-in" data-aos-delay="200">
                         <div class="center-feature-photo shadow-lg position-relative rounded-4 overflow-hidden">
-                            <img id="pos-image-3" src="images/5.jpeg" class="img-fluid w-100" alt="Couple Twirling Photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop';">
+                            <img id="pos-image-3" src="images/5_car.png" class="img-fluid w-100" alt="Couple Twirling Photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop';">
                             <div class="photo-overlay-tag">
                                 <span>Joy &amp; Harmony</span>
                             </div>
@@ -229,7 +235,7 @@
                     </div>
 
                     <!-- Bride Box -->
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-4 col-12" data-aos="fade-up" data-aos-delay="300">
                         <div class="person-white-card text-center p-4">
                             <div class="person-tag tag-royal mb-3">BRIDE</div>
                             <h3 class="person-name">Nafiya</h3>
@@ -320,10 +326,10 @@
                 <div class="row justify-content-center" data-aos="zoom-in">
                     <div class="col-lg-8">
                         <div class="featured-full-card position-relative rounded-4 overflow-hidden shadow-lg" id="pos-5-card">
-                            <img id="pos-image-5" src="images/2.jpeg" class="img-fluid w-100" alt="Garden Walk Photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&auto=format&fit=crop';">
+                            <img id="pos-image-5" src="images/2_car.png" class="img-fluid w-100" alt="Garden Walk Photo" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&auto=format&fit=crop';">
                             <div class="featured-overlay-content p-4 text-center">
                                 <h3 class="text-white font-serif mb-1">Juzail &amp; Nafiya</h3>
-                                <p class="text-gold-light small mb-0" style="color: white !important;"><i class="fa-solid fa-expand me-1"></i> Tap to view full portrait</p>
+                                <!-- <p class="text-gold-light small mb-0" style="color: white !important;"><i class="fa-solid fa-expand me-1"></i> Tap to view full portrait</p> -->
                             </div>
                         </div>
                     </div>
