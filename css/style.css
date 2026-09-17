@@ -69,7 +69,7 @@ body.loading-active {
 
 .section-heading {
     font-family: var(--font-serif);
-    font-size: 2.8rem;
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
     color: var(--text-main);
     font-weight: 600;
 }
@@ -750,80 +750,400 @@ body.loading-active {
     display: block;
 }
 
-/* Comprehensive Multi-Device Responsive Breakpoints */
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE — COMPLETE FIX (ALL SECTIONS)
+   ========================================================================== */
+
+/* ---- TABLET (max-width: 991px) ---- */
 @media (max-width: 991px) {
     .section-padding {
-        padding: 70px 15px;
+        padding: 60px 16px;
+    }
+    .section-heading {
+        font-size: 2.2rem;
+    }
+    .hero-section {
+        min-height: auto;
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
     }
     .hero-main-card {
-        padding: 32px 24px !important;
+        padding: 28px 20px !important;
     }
     .event-banner-img {
-        height: 240px;
+        height: 220px;
     }
     .featured-full-card img {
-        height: 380px;
+        height: 360px;
     }
 }
 
+/* ---- MOBILE (max-width: 768px) ---- */
 @media (max-width: 768px) {
+
+    /* --- Global --- */
     .section-padding {
-        padding: 50px 15px;
+        padding: 45px 14px;
+    }
+    .section-heading {
+        font-size: 1.8rem;
+    }
+    .gold-line {
+        margin-bottom: 18px;
+    }
+    .badge-sub {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+    }
+
+    /* --- Loader / Splash Screen --- */
+    .modern-loader {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .loader-inner {
+        width: 92% !important;
+        max-width: 100% !important;
+        padding: 15px 12px !important;
+    }
+    .loader-arabic {
+        font-size: 18px !important;
+    }
+    .loader-names {
+        font-size: 1.8rem !important;
+        word-break: normal !important;
+    }
+    .loader-names .ampersand {
+        font-size: 2.2rem !important;
+    }
+    .loader-date {
+        font-size: 0.72rem !important;
+        letter-spacing: 2px !important;
+    }
+    .loader-progress-track {
+        width: 110px !important;
+    }
+    .loader-enter-btn {
+        padding: 12px 24px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+        padding: 6px 0 !important;
+    }
+    .nav-container {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start !important;
+        padding: 4px 10px !important;
+        gap: 8px !important;
+        scrollbar-width: none;
+    }
+    .nav-container::-webkit-scrollbar {
+        display: none;
+    }
+    .nav-container a {
+        flex: 0 0 auto;
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
+        padding: 5px 10px !important;
+        background: rgba(197, 160, 89, 0.06);
+        border-radius: 18px;
+        border: 1px solid rgba(197, 160, 89, 0.2);
+        white-space: nowrap;
+    }
+    .nav-container a::after {
+        display: none;
+    }
+
+    /* --- Hero Section --- */
+    .hero-section {
+        min-height: auto !important;
+        padding: 20px 0 !important;
     }
     .hero-main-card {
-        padding: 24px 16px !important;
-        border-radius: 24px;
+        padding: 20px 14px !important;
+        border-radius: 20px !important;
+        margin: 0 8px !important;
+        max-width: 100% !important;
     }
-    .event-banner-img {
-        height: 200px;
+    .hero-photo-arch-wrapper {
+        max-width: 200px !important;
+        margin-bottom: 20px;
     }
-    .featured-full-card img {
-        height: 320px;
+    .hero-photo-arch {
+        height: 250px !important;
+        border-radius: 125px 125px 20px 20px !important;
+        border-width: 3px !important;
     }
-    .invite-specs {
-        justify-content: space-around;
-        gap: 16px !important;
+    .hero-photo-badge {
+        font-size: 0.72rem !important;
+        padding: 5px 14px !important;
+        bottom: -12px !important;
     }
-    .floating-photo-badge {
-        right: 10px;
-        bottom: -12px;
-        padding: 6px 14px;
-        font-size: 0.75rem;
+    .bismillah-arabic {
+        font-size: 17px !important;
     }
-}
-
-@media (max-width: 480px) {
-    .section-padding {
-        padding: 40px 12px;
+    .bismillah-subtext {
+        font-size: 12px !important;
+    }
+    .tag-badge {
+        font-size: 0.65rem !important;
+        padding: 4px 14px !important;
+        letter-spacing: 2px !important;
+    }
+    .hero-couple-names {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    .hero-ampersand {
+        font-size: 2.3rem !important;
+        margin: 0 4px !important;
+    }
+    .hero-date-str {
+        font-size: 0.9rem !important;
+    }
+    .countdown-wrapper {
+        gap: 6px !important;
+        flex-wrap: nowrap !important;
+        width: 100%;
+    }
+    .countdown-box {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 8px 2px !important;
+        border-radius: 10px !important;
+    }
+    .cd-num {
+        font-size: 1.3rem !important;
+    }
+    .cd-lbl {
+        font-size: 0.55rem !important;
+        letter-spacing: 0.5px !important;
     }
     .hero-action-buttons {
         width: 100%;
+        flex-direction: column !important;
+        gap: 8px !important;
     }
     .hero-action-buttons .btn {
-        width: 100%;
+        width: 100% !important;
         text-align: center;
-        padding: 11px 20px;
-        font-size: 0.88rem;
+        padding: 11px 18px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* --- Invitation Section --- */
+    .photo-frame-card {
+        border-radius: 18px;
+        padding: 4px;
+    }
+    .photo-box img {
+        border-radius: 16px !important;
+    }
+    .floating-photo-badge {
+        right: 50% !important;
+        transform: translateX(50%) !important;
+        bottom: -12px !important;
+        padding: 5px 14px !important;
+        font-size: 0.72rem !important;
+        white-space: nowrap;
+    }
+    .invite-content-card {
+        padding: 20px 14px !important;
+        border-radius: 18px !important;
+    }
+    .lead-quote {
+        font-size: 1rem !important;
+    }
+    .invite-specs {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        width: 100%;
+    }
+    .spec-item {
+        padding: 8px 4px;
+        background: rgba(197, 160, 89, 0.04);
+        border-radius: 10px;
+        border: 1px solid rgba(197, 160, 89, 0.12);
+    }
+    .spec-item i {
+        font-size: 1.1rem !important;
+        margin-bottom: 4px !important;
+    }
+    .spec-item strong {
+        font-size: 0.78rem !important;
+        display: block;
+    }
+    .spec-item .small {
+        font-size: 0.65rem !important;
+    }
+
+    /* --- Couple Section --- */
+    .person-white-card {
+        padding: 18px 14px !important;
+        border-radius: 18px !important;
+    }
+    .person-name {
+        font-size: 1.7rem !important;
+    }
+    .person-desc {
+        font-size: 0.85rem !important;
+    }
+    .center-feature-photo {
+        border-width: 3px !important;
+    }
+    .center-feature-photo img {
+        aspect-ratio: 3 / 4 !important;
+        max-height: 300px !important;
+    }
+    .photo-overlay-tag {
+        font-size: 0.72rem !important;
+        padding: 4px 14px !important;
+        bottom: 10px !important;
+    }
+
+    /* --- Nikkah Details & Venue Section --- */
+    .event-banner-card {
+        border-radius: 16px !important;
+        border-width: 3px !important;
     }
     .event-banner-img {
-        height: 170px;
+        height: 170px !important;
     }
     .event-banner-overlay {
-        padding: 14px !important;
+        padding: 12px 10px !important;
+    }
+    .event-banner-overlay h3 {
+        font-size: 1.1rem !important;
+    }
+    .event-banner-overlay p {
+        font-size: 0.72rem !important;
+    }
+    .event-white-box {
+        padding: 18px 12px !important;
+        border-radius: 14px !important;
+    }
+    .event-white-box h4 {
+        font-size: 1.15rem !important;
+    }
+    .event-white-box i {
+        font-size: 1.3rem !important;
+    }
+
+    /* --- Gallery / Featured Portrait --- */
+    .featured-full-card {
+        border-width: 3px !important;
     }
     .featured-full-card img {
-        height: 250px;
+        height: 260px !important;
     }
-    .audio-control-wrapper {
-        bottom: 16px;
-        right: 16px;
+    .featured-overlay-content {
+        padding: 12px !important;
     }
-    .audio-btn {
-        width: 44px;
-        height: 44px;
+    .featured-overlay-content h3 {
+        font-size: 1.2rem !important;
+    }
+
+    /* --- Footer --- */
+    .footer-white {
+        padding: 35px 14px !important;
+    }
+    .footer-arabic {
+        font-size: 18px !important;
     }
     .footer-names {
-        font-size: 1.8rem;
+        font-size: 1.7rem !important;
+    }
+    .footer-date {
+        font-size: 0.82rem !important;
+    }
+
+    /* --- Audio Button --- */
+    .audio-control-wrapper {
+        bottom: 14px !important;
+        right: 14px !important;
+    }
+    .audio-btn {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    /* --- Events action buttons mobile stack --- */
+    #events .d-flex.flex-wrap {
+        flex-direction: column !important;
+        width: 100%;
+    }
+    #events .d-flex.flex-wrap .btn {
+        width: 100% !important;
+        text-align: center;
     }
 }
 
+/* ---- EXTRA-SMALL PHONES (max-width: 400px) ---- */
+@media (max-width: 400px) {
+    .section-padding {
+        padding: 35px 10px;
+    }
+    .section-heading {
+        font-size: 1.55rem;
+    }
+    .loader-inner {
+        padding: 12px 8px !important;
+    }
+    .loader-arabic {
+        font-size: 16px !important;
+    }
+    .loader-names {
+        font-size: 1.55rem !important;
+    }
+    .loader-names .ampersand {
+        font-size: 1.9rem !important;
+    }
+    .loader-enter-btn {
+        padding: 10px 18px !important;
+        font-size: 0.82rem !important;
+    }
+    .hero-main-card {
+        padding: 16px 10px !important;
+        margin: 0 4px !important;
+    }
+    .hero-photo-arch-wrapper {
+        max-width: 180px !important;
+    }
+    .hero-photo-arch {
+        height: 220px !important;
+        border-radius: 110px 110px 18px 18px !important;
+    }
+    .hero-couple-names {
+        font-size: 1.7rem !important;
+    }
+    .hero-ampersand {
+        font-size: 2rem !important;
+    }
+    .countdown-box {
+        padding: 6px 2px !important;
+        border-radius: 8px !important;
+    }
+    .cd-num {
+        font-size: 1.1rem !important;
+    }
+    .cd-lbl {
+        font-size: 0.48rem !important;
+    }
+    .invite-specs {
+        grid-template-columns: 1fr !important;
+    }
+    .event-banner-img {
+        height: 140px !important;
+    }
+    .featured-full-card img {
+        height: 200px !important;
+    }
+    .footer-names {
+        font-size: 1.5rem !important;
+    }
+}
